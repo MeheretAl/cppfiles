@@ -18,25 +18,25 @@ int main() {
     }
     cout << "To which currency do you want it to be converted to?\n";
     cin >> output;
-    if (input=="D" and output == "E") {
+    if (input=="D" && output == "E") {
         cout << dollar <<" Dollars are " << .93*dollar << " euros." <<endl;
-    } else if (input == "D" and output == "P") {
+    } else if (input == "D" && output == "P") {
         cout << dollar << " Dollars are " << .81*dollar << " pounds" << endl;
-    } else if (input=="D" and output == "D") {
+    } else if (input=="D" && output == "D") {
         cout << dollar << " Dollars are " << dollar << " dollars." << endl;
     }
-    if (input=="E" and output == "D") {
+    if (input=="E" && output == "D") {
         cout << euro <<" Euros are " << 1.07*euro << " dollars." <<endl;
-    } else if (input == "E" and output == "D") {
+    } else if (input == "E" && output == "D") {
         cout << euro << " Euros are " << 0.86*euro << " pounds" << endl;
-    } else if (input=="E" and output == "E") {
+    } else if (input=="E" && output == "E") {
         cout << euro << " euros are " << euro << " euros." << endl;
     }
-    if (input=="P" and output == "D") {
+    if (input=="P" && output == "D") {
         cout << pound <<" pounds are " << 1.24*pound << " pounds." <<endl;
-    } else if (input == "E" and output == "P") {
+    } else if (input == "E" && output == "P") {
         cout << euro << " euros are " << 1.16*pound << " pounds" << endl;
-    } else if (input=="P" and output == "P") {
+    } else if (input=="P" && output == "P") {
         cout << euro << " pounds are " << pound << " pounds." << endl;
     }
     return 0;
