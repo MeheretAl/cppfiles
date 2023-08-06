@@ -7,7 +7,7 @@ using namespace std;
 
 
 int main() {
-    int lb = 1,ub=100,random,tries=10,guess;
+    unsigned short lb = 1,ub=100,random,tries=10,guess;
     srand(time(0));
     random = (rand() % (ub-lb+1)) + lb;
 

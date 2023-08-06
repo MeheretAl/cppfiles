@@ -1,11 +1,10 @@
 #include <iostream>
-#include <list>
+
 
 using namespace std;
 
 void calculator()
 {
-    std::list<char> my_list = {'+', '-', '*', '/', '%', 'e'};
     char choice;
 
     cout << "\t\t\t Menu \t\t\t\n";
@@ -21,30 +20,42 @@ void calculator()
     {
     case '+':
         cout << "You have chosen " << choice << ".\n";
+        return choice;
         break;
     case '-':
         cout << "You have chosen " << choice << ".\n";
+        return choice;
         break;
     case '*':
         cout << "You have chosen " << choice << ".\n";
+        return choice;
         break;
     case '/':
         cout << "You have chosen " << choice << ".\n";
+        return choice;
         break;
     case '%':
         cout << "You have chosen " << choice << ".\n";
+        return choice;
         break;
     case 'e':
         cout << "You have chosen to quit.\n";
+        return choice;
         break;
     default:
         cout << "Invalid Input! Please choose a correct operator.\n";
+        return choice;
         calculator();
     }
+}
+
+void operations() {
+
 }
 
 int main()
 {
     calculator();
+    operations();
     return 0;
 }
