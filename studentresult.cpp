@@ -18,44 +18,39 @@ int main() {
 
 	total = test1 + test2 +midexam +finalexam;
 
-    switch(total) {
-  	case 90 ... 100:
-  		grade = "A+";
-  		break;
-  	case 83 ... 89:
-  		grade = "A";
-  		break;
-  	case 80 ... 82:
-  		grade = "A-";
-  		break;
-  	case 75 ... 79:
-  		grade = "B+";
-  		break;
-  	case 70 ... 74:
-  		grade = "B";
-  		break;
-  	case 65 ... 69:
-  		grade = "B-";
-  		break;
-  	case 60 ... 64:
-  		grade = "C+";
-  		break;
-  	case 55 ... 59:
-  		grade = "C";
-  		break;
-  	case 50 ... 54:
-  		grade = "C-";
-  		break;
-  	case 40 ... 49:
-  		grade = "D";
-  		break;
-  	case 0 ... 39:
-  		grade = "F";
-  		break;
-  	default:
-  		grade = "NG";
-  		break;
-    }
+    if (total >= 90) {
+		grade = "A+";
+	} else if (total >= 83 && total < 90) {
+		grade ="A";
+	} else if (total >= 80 && total < 83) {
+		grade = "A-";
+	} else if (total >= 75 && total < 80) {
+		grade = "B+";
+	} else if (total >= 75 && total < 80) {
+		grade = "B+";
+	} else if (total >= 70 && total < 75) {
+		grade = "B";
+	} else if (total >= 65 && total < 70) {
+		grade = "B-";
+	} else if (total >= 60 && total < 65) {
+		grade = "C+";
+	} else if (total >= 50 && total < 60) {
+		grade = "C";
+	} else if (total >= 45 && total < 50) {
+		grade = "C-";
+	} else if (total >= 40 && total < 45) {
+		grade = "D";
+	} else if (total >= 30 && total < 40) {
+		grade = "Fx";
+	} else if (total >= 0 && total < 30) {
+		grade = "F";
+	} else if (total < 0) {
+		grade = "Error";
+		cout << "Please run the program again with valid inputs";
+	} else if (total > 100) {
+		grade ="Error";
+		cout << "Please run the program again with valud inputs";
+	}
 
 	cout << "Test1\t Test2 \t Midexam \t FinalExam \t Total\t Final\n" 
 		 << "(10%)\t (10%)\t (30%)\t\t (50%)\t\t (100%)\t Grade \n" 
