@@ -3,91 +3,85 @@
 using namespace std;
 //the size of the array to be the stack is
 //set to a maximum of 2000
-#define MAX 2000
 
+//template T for elements of the array
+template <typename T>
 class Stack
 {
 // the top element can't be accessed 
 // out of the class
 private:
     int top;
+    int MAX;
+    T* array;
 public:
-// array with size set to MAx
-    int array[MAX]; 
-// intializing the top element as -1
-// essentially making it empty at first
-    Stack(){top = -1;};
+//constructor
+Stack(int size = 2000) : top(-1), MAX(size) {
+    array = new T[MAX];
+}
+//destructor to free dynamically allocated memory
+~Stack() {
+    delete[] array;
+}
+
 // push to add elements to the stack if
 // the stack size is less than MAX
-    bool push(int x);
+    bool push(T x) {
+        if(top >= MAX-1){
+            cout << "Stack is full " << endl ;
+            return false;
+        } else{
+            array[++top] = x;
+            cout << x  << " added to stack\n";
+            return true;
+        }
+    };
 // remove the top most element of the stack
-    int pop();
+    T pop() {
+        if(!isEmpty()) {
+            T x = array[top--];
+            return x;
+        }else{
+            cout << "Stack is empty " << endl;
+            //default-constructed value for T
+            return T();
+        }
+    };
 // check if the Stack is empty or not
-    bool isEmpty();
+    bool isEmpty() {
+        return top == -1;
+    };
+    
 // look at the the top most element of the stack
-    int look();
+    T look() {
+        if (!isEmpty())
+        {
+            T x = array[top];
+            return x;
+        } else {
+            return -1;
+        }
+        
+    };
 };
 
-bool Stack::isEmpty() {
-    return top < 0;
-}
+//sample implementation
+int main() {
+    Stack<char> charstack;
+    charstack.push('e');
+    charstack.push('y');
+    charstack.push('S');
+    charstack.push('5');
 
-bool Stack::push(int x) {
-    if (top >= MAX-1)
+    cout << charstack.pop() << " is removed from the stack\n";
+    cout << "These are the members of the stack\n";
+    while (!charstack.isEmpty())
     {
-        cout << "Stack is filled";
-        return false;
-    }
-    else{
-        //add x to the top of the stack
-        array[++top] = x;
-        cout << x << " added to stack\n";
-        return true;
-    }
-}
-
-int Stack::look(){
-    if (!isEmpty())
-    {
-        return array[top];
-    }
-    else{
-        cout << "Stack is empty";
-        return -1;
-    }   
-}
-
-int Stack::pop(){
-    if (!isEmpty())
-    {
-        int x = array[top--];
-        return x;
-    }
-     else{
-        return -1;
-     } 
-};
-
-
-
-
-int main()
-{
-    Stack s;
-    s.push(10);
-    s.push(5);
-    s.push(25);
-    cout << s.pop() << " removed from stack\n";
-
-    cout  << "Top element is " << s.look() << endl;
-
-    cout << " Elements in stack: ";
-    while (!s.isEmpty())
-    {
-        cout << s.look() << " ";
-        s.pop();
+        cout << charstack.look() << " ";
+        charstack.pop();
     }
     
+
 
     return 0;
 }
