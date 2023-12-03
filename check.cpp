@@ -1,81 +1,44 @@
-#include <cstdlib>
 #include <iostream>
-#include <time.h>
-#include <limits>
+#include <unordered_map>
 
 using namespace std;
 
+int main()
+{
+    unordered_map<char, char> map1;
+    string str1;
+    cin >> str1;
+    int count = str1.length();
+    map1['('] = ')';
+    map1['{'] = '}';
+    map1['['] = ']';
+    return 0;
 
-int main() {
-    unsigned short lb = 1,ub=100,random,tries=10,guess;
-    srand(time(0));
-    random = (rand() % (ub-lb+1)) + lb;
+    bool elements = true;
 
-    cout << "Guess a number between 1 and 100.\n";
-    cout << "You have 10 tries to correctly guess the number.\n";
-    cin >> guess;
-
-    while(1) {
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            cout<< "You have entered the wrong input" << endl;
-            cin>>guess;
+    for(char ch:str1) {
+        auto it = map1.find(ch);
+        if (it != map1.end())
+        {
+            if (it ->second == str1.length())
+            {
+                elements = false;
+                break;
+            }
+            
+        } else {
+            elements = false;
+            break;
         }
-        if (!cin.fail())
-        break;
-    }
-
-    while (tries>1) {
-        while(1) {
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            cout<< "You have entered the wrong input" << endl;
-            cin>>guess;
-        }
-        if (!cin.fail())
-        break;
-    }
-    tries --;
-    if (random < guess) {
-        cout<< "Guess lower.\n" << "You have " << tries << " tries left.\n";
-        cin >> guess;
         
     }
-    else if (random > guess) {
-        while(1) {
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            cout<< "You have entered the wrong input" << endl;
-            cin>>guess;
-        }
-        if (!cin.fail())
-        break;
+    if (elements)
+    {
+        cout << "YES";
+    } else {
+        cout << "NO";
     }
-        cout << "Guess higher.\n" << "You have " << tries << " tries left.\n"; 
-        cin >> guess;
- 
-    }
-    else {
-        while(1) {
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            cout<< "You have entered the wrong input" << endl;
-            cin>>guess;
-        }
-        if (!cin.fail())
-        break;
-    }
-        cout << "Congrats!, You've correctly guessed the number with " << tries << " tries left.\n";
-        break;
-    }
-    if (tries==1) {
-        cout << "You've failed to correctly guess the number.\n";
-        cout << "The correct number was " << random << ".";
-    }
-    }
+    
+    
     return 0;
 }
