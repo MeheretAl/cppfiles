@@ -1,7 +1,6 @@
 #include "implementation.h"
 #include <string>
 
-
 using namespace std;
 
 int precedence(char c)
@@ -55,7 +54,6 @@ void infixtopostfix(string s)
             }
             charstack.push(s[i]);
         }
-        
     }
 
     while (!charstack.isEmpty())
@@ -63,8 +61,7 @@ void infixtopostfix(string s)
         result += charstack.gettop();
         charstack.pop();
     }
-    
-    cout << result<< endl;
+    cout << result << endl;
 }
 
 int main() {

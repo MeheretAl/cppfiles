@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// template T for elements of the array
+//Stack data type with syntax " Stack<datatype> variablename"  
 template <typename T>
 class Stack
 {
@@ -74,4 +74,8 @@ public:
             return -1;
         }
     };
+
+    int length() {
+        return top+1;
+        };
 };
