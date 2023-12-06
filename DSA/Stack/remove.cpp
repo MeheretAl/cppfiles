@@ -23,7 +23,6 @@ string remove(string str) {
             count -=1;
         }
     }
-    cout << result;
     return result;
 }
 
