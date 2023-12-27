@@ -1,9 +1,10 @@
 #include <iostream>
-
+ //better off using a data structure like stack to perform operations
+ //should be revisited in due time
 
 using namespace std;
 
-void calculator()
+char calculator()
 {
     char choice;
 

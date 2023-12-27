@@ -1,8 +1,7 @@
 #include <string>
-#include <bits/stdc++.h>
 
 using namespace std;
-
+//do it without using string conversion
 int main() {
     class Solution{
         public:
