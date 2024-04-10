@@ -2,6 +2,7 @@
 
 LinkedList *mergeTwoSortedList(LinkedList *list1, LinkedList *list2)
 {
+
     if (list1 == nullptr)
     {
         return list2;
@@ -11,44 +12,36 @@ LinkedList *mergeTwoSortedList(LinkedList *list1, LinkedList *list2)
         return list1;
     }
 
-    LinkedList *merged;
-    // entry point for the merged ptr
-    if (list1->data <= list2->data)
-    {
-        merged = list1;
-        list1 = list1->next;
-    }
-    else
-    {
-        merged = list2;
-        list2 = list2->next;
-    }
-
+    LinkedList *temp1 = list1;
+    LinkedList *temp2 = list2;
+    LinkedList *merged = new LinkedList();
     LinkedList *current = merged;
 
-    while (list1 != nullptr && list2 != nullptr)
+    while (temp1 != nullptr && temp2 != nullptr)
     {
-        if (list1->data <= list2->data)
+        current->next = new LinkedList(); // creating a new node as we go
+        current = current->next;          // updating the current node with the node we created above
+
+        if (temp1->data <= temp2->data)
         {
-            current->next = list1;
-            list1 = list1->next;
+            current->data = temp1->data;
+            temp1 = temp1->next;
         }
         else
         {
-            current->next = list2;
-            list2 = list2->next;
+            current->data = temp2->data;
+            temp2 = temp2->next;
         }
-        current = current->next;
     }
 
-    if (list1 != nullptr)
+    if (temp1 != nullptr)
     {
-        current->next = list1;
+        current->next = temp1;
     }
     else
     {
-        current->next = list2; // basically appending the rest of list2 to the answer node
+        current->next = temp2;
     }
-    // can be optimized further
-    return merged;
+
+    return merged->next; // next because the actual merged List starts at the next Node ~ line 22
 }
