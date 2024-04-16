@@ -1,6 +1,6 @@
 #include "implementation.h"
 
-LinkedList *mergeTwoSortedList(LinkedList *list1, LinkedList *list2)
+ListNode *mergeTwoSortedList(ListNode *list1, ListNode *list2)
 {
 
     if (list1 == nullptr)
@@ -12,15 +12,15 @@ LinkedList *mergeTwoSortedList(LinkedList *list1, LinkedList *list2)
         return list1;
     }
 
-    LinkedList *temp1 = list1;
-    LinkedList *temp2 = list2;
-    LinkedList *merged = new LinkedList();
-    LinkedList *current = merged;
+    ListNode *temp1 = list1;
+    ListNode *temp2 = list2;
+    ListNode *merged = new ListNode();
+    ListNode *current = merged;
 
     while (temp1 != nullptr && temp2 != nullptr)
     {
-        current->next = new LinkedList(); // creating a new node as we go
-        current = current->next;          // updating the current node with the node we created above
+        current->next = new ListNode(); // creating a new node as we go
+        current = current->next;        // updating the current node with the node we created above
 
         if (temp1->data <= temp2->data)
         {

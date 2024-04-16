@@ -3,10 +3,10 @@
 
 using namespace std;
 
-int getDecimalValue(LinkedList *head)
+int getDecimalValue(ListNode *head)
 {
     int ans = 0;
-    LinkedList *ptr = head;
+    ListNode *ptr = head;
     while (ptr != nullptr)
     {
         // bit shifting to the left by 1 to make place for the next data
@@ -29,9 +29,9 @@ int getDecimalValue(LinkedList *head)
 
 int main()
 {
-    LinkedList *node = createNewLinkedList(1);
-    node->next = createNewLinkedList(0);
-    node->next->next = createNewLinkedList(1);
+    ListNode *node = createNewListNode(1);
+    node->next = createNewListNode(0);
+    node->next->next = createNewListNode(1);
 
     cout << getDecimalValue(node);
 

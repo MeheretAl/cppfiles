@@ -3,10 +3,10 @@
 
 using namespace std;
 
-LinkedList *middleNode(LinkedList *head)
+ListNode *middleNode(ListNode *head)
 {
-    LinkedList *fastptr = head;
-    LinkedList *slowptr = head;
+    ListNode *fastptr = head;
+    ListNode *slowptr = head;
     // fastptr != nullptr indicates fastptr has reached the end of the even sized linked list
     // and the slow ptr has reached the middle
     // fastptr.next != nullptr is for when the length of the linked list is odd
@@ -21,12 +21,12 @@ LinkedList *middleNode(LinkedList *head)
 
 int main(int argc, char const *argv[])
 {
-    LinkedList *head = createNewLinkedList(0);
-    head->next = createNewLinkedList(1);
-    head->next->next = createNewLinkedList(2);
-    head->next->next->next = createNewLinkedList(4);
+    ListNode *head = createNewListNode(0);
+    head->next = createNewListNode(1);
+    head->next->next = createNewListNode(2);
+    head->next->next->next = createNewListNode(4);
 
-    LinkedList *check = middleNode(head);
+    ListNode *check = middleNode(head);
     while (check != nullptr)
     {
         cout << check->data << endl;

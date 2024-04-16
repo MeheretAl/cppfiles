@@ -3,14 +3,14 @@
 
 using namespace std;
 
-double findAverage(LinkedList *head)
+double findAverage(ListNode *head)
 {
     if (head == nullptr)
     {
         return 0.0;
     }
 
-    LinkedList *ptr = head;
+    ListNode *ptr = head;
     int sum = 0, size = 0;
     while (ptr != nullptr)
     {
@@ -26,10 +26,10 @@ double findAverage(LinkedList *head)
 int main(int argc, char const *argv[])
 {
 
-    LinkedList *head = createNewLinkedList(0);
-    head->next = createNewLinkedList(5);
-    head->next->next = createNewLinkedList(9);
-    head->next->next->next = createNewLinkedList(7);
+    ListNode *head = createNewListNode(0);
+    head->next = createNewListNode(5);
+    head->next->next = createNewListNode(9);
+    head->next->next->next = createNewListNode(7);
     // 5 -> 0 -> 9 -> 7
 
     cout << findAverage(head);

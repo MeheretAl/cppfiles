@@ -1,8 +1,8 @@
 #include "implementation.h"
 
-LinkedList *removeDuplicates(LinkedList *head)
+ListNode *removeDuplicates(ListNode *head)
 {
-    LinkedList *current = head;
+    ListNode *current = head;
     if (head == nullptr || head->next == nullptr)
     {
         return head;
@@ -13,8 +13,8 @@ LinkedList *removeDuplicates(LinkedList *head)
 
         if (current->data == current->next->data)
         {
-            LinkedList *duplicate = current->next; // marking the node we want to delete as duplicate
-            current->next = duplicate->next;       // setting the next current ptr to the next duplicate ptr
+            ListNode *duplicate = current->next; // marking the node we want to delete as duplicate
+            current->next = duplicate->next;     // setting the next current ptr to the next duplicate ptr
             // given  1->1->2->1
             // duplicate points to the 1st index
             // current->next was supposed to point to 1st index but we go one above to the 2nd index

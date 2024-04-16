@@ -3,23 +3,23 @@
 
 using namespace std;
 
-bool isPalindrome(LinkedList *head)
+bool isPalindrome(ListNode *head)
 {
     // find middle node
-    LinkedList *slow = head;
-    LinkedList *fast = head;
+    ListNode *slow = head;
+    ListNode *fast = head;
     while (fast != nullptr && fast->next != nullptr)
     {
         slow = slow->next;
         fast = fast->next->next;
     }
     // reverse middle node
-    LinkedList *reversed = nullptr;
-    LinkedList *curr = slow;
+    ListNode *reversed = nullptr;
+    ListNode *curr = slow;
 
     while (curr != nullptr)
     {
-        LinkedList *nextNode = curr->next;
+        ListNode *nextNode = curr->next;
         curr->next = reversed;
         reversed = curr;
         curr = nextNode;
@@ -43,10 +43,10 @@ bool isPalindrome(LinkedList *head)
 
 int main()
 {
-    LinkedList *head = createNewLinkedList(1);
-    head->next = createNewLinkedList(2);
-    head->next->next = createNewLinkedList(2);
-    head->next->next->next = createNewLinkedList(1);
+    ListNode *head = createNewListNode(1);
+    head->next = createNewListNode(2);
+    head->next->next = createNewListNode(2);
+    head->next->next->next = createNewListNode(1);
     if (isPalindrome(head))
     {
         cout << "Palindrome";

@@ -3,15 +3,15 @@
 
 using namespace std;
 
-LinkedList *iterativeReverseLinkedList(LinkedList *head)
+ListNode *iterativeReverseListNode(ListNode *head)
 {
     // iterative approach
-    LinkedList *prev = nullptr;
-    LinkedList *curr = head;
+    ListNode *prev = nullptr;
+    ListNode *curr = head;
 
     while (curr != nullptr)
     {
-        LinkedList *nextNode = curr->next;
+        ListNode *nextNode = curr->next;
         curr->next = prev;
         prev = curr;
         curr = nextNode;
@@ -22,15 +22,15 @@ LinkedList *iterativeReverseLinkedList(LinkedList *head)
 
 int main(int argc, char const *argv[])
 {
-    LinkedList *finalReversed;
-    LinkedList *head = createNewLinkedList(0);
-    head->next = createNewLinkedList(5);
-    head->next->next = createNewLinkedList(9);
-    head->next->next->next = createNewLinkedList(7);
+    ListNode *finalReversed;
+    ListNode *head = createNewListNode(0);
+    head->next = createNewListNode(5);
+    head->next->next = createNewListNode(9);
+    head->next->next->next = createNewListNode(7);
     // 5 -> 0 -> 9 -> 7
-    finalReversed = iterativeReverseLinkedList(head);
+    finalReversed = iterativeReverseListNode(head);
 
-    LinkedList *ptr = finalReversed;
+    ListNode *ptr = finalReversed;
     cout << "Reversed\n";
     while (ptr != nullptr)
     {
