@@ -10,35 +10,32 @@ ListNode *deleteMiddleNode(ListNode *head)
         return nullptr;
     }
 
-    // find middle node first
-    ListNode *fastptr = head;
-    ListNode *slowptr = head;
-    ListNode *prev = nullptr;
-
-    while (fastptr != nullptr && fastptr->next != nullptr)
+    ListNode *ptr = head;
+    // find length of List to determine middleNode
+    int length = 0;
+    while (ptr != nullptr)
     {
-        fastptr = fastptr->next->next;
-        prev = slowptr; // this is the node before the middle one
-        slowptr = slowptr->next;
+        ptr = ptr->next;
+        length += 1;
     }
 
-    // 1 , 2, 3, 4, 5,6
-    // 3 is to be deleted so 2 needs a link to 4
+    int middle = length / 2;
+    ptr = head;
+    // find prev node
+    for (int i = 0; i < middle - 1; i++)
+    {
+        ptr = ptr->next;
+    }
 
-    if (prev != nullptr)
-    {
-        prev->next = slowptr->next;
-        delete slowptr;
-    }
-    else
-    {
-        head = head->next;
-        delete slowptr;
-    }
+    // remove middle node
+    ListNode *middleNode = ptr->next;
+    ptr->next = ptr->next->next;
+    delete middleNode;
 
     return head;
 }
 
+// sample example
 int main(int argc, char const *argv[])
 {
     ListNode *head = createNewListNode(1);
