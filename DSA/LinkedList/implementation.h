@@ -1,4 +1,3 @@
-#include <iostream>
 struct ListNode
 {
     int data;
@@ -30,6 +29,22 @@ void insertNode(ListNode *head, int data)
     }
 
     current->next = newNode;
+}
+
+ListNode *reverseLinkedList(ListNode *head)
+{
+    ListNode *prev = nullptr;
+    ListNode *current = head;
+    ListNode *next;
+    while (current != nullptr)
+    {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+
+    return prev;
 }
 
 // int main()
