@@ -12,7 +12,7 @@ ListNode *createNewListNode(int data)
     return node;
 }
 
-void insertNode(ListNode *head, int data)
+void insertNodeAtTail(ListNode *head, int data)
 {
     ListNode *newNode = createNewListNode(data);
 
@@ -47,6 +47,50 @@ ListNode *reverseLinkedList(ListNode *head)
     return prev;
 }
 
+ListNode *insertNodeAtHead(ListNode *head, int data)
+{
+    ListNode *newNode = createNewListNode(data);
+    newNode->next = head;
+    head = newNode;
+    return head;
+}
+
+bool searchByData(ListNode *head, int target)
+{
+    ListNode *ptr = head;
+    while (ptr != nullptr)
+    {
+        if (target == ptr->data)
+        {
+            return true;
+        }
+        ptr = ptr->next;
+    }
+
+    return false;
+}
+
+void deleteNodeByData(ListNode *head, int target)
+{
+    if (head == nullptr)
+    {
+        return;
+    }
+    ListNode *dummy = createNewListNode(0);
+    dummy->next = head;
+    ListNode *ptr = dummy;
+    while (ptr->next != nullptr)
+    {
+        if (ptr->next->data == target)
+        {
+            ListNode *temp = ptr->next->next;
+            delete ptr->next;
+            ptr->next = temp;
+            break;
+        }
+        ptr = ptr->next;
+    }
+}
 // int main()
 // {
 //
