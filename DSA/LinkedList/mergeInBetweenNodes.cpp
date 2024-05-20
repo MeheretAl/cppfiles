@@ -2,7 +2,7 @@
 
 ListNode *mergeInBetweenNodes(ListNode *list1, ListNode *list2, int a, int b)
 {
-    ListNode *nodeA = nullptr, *nodeB = nullptr, *ptr = list1;
+    ListNode *NodeA = nullptr, *nodeB = nullptr, *ptr = list1;
     int count = 0;
     while (ptr != nullptr)
     {
@@ -22,7 +22,7 @@ ListNode *mergeInBetweenNodes(ListNode *list1, ListNode *list2, int a, int b)
         ptr = ptr->next;
     }
     // connecting nodeA with list2
-    nodeA->next = list2;
+    NodeA->next = list2;
     ListNode *ptr2 = list2;
     // finding the last node of list2 to connect back with list1
     while (ptr2->next != nullptr)
