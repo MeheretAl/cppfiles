@@ -10,27 +10,23 @@ ListNode* swapNodes(ListNode* head, int k) {
     for (int i = 1; i < k && firstptr; ++i) {
         firstptr = firstptr->next;
     }
-    
-    if (!firstptr) {
-        return head;
-    }
-
-
-    ListNode* slowptr = head;
+    ListNode* dummy = createNewListNode(0);
+    dummy->next = head;
+    ListNode* slowptr = dummy;
     ListNode* fastptr = firstptr;
-    while (fastptr->next!=nullptr)
+    while (fastptr->next)
     {
         fastptr = fastptr->next;
         slowptr = slowptr->next;
     }
 
-    
-    
-    int temp = slowptr->data;
-    slowptr->data = firstptr->data;
-    firstptr->data = temp;
+    //swapping
+    int swap = slowptr->next->data;
+    slowptr->next->data = firstptr->data;
+    firstptr->data = swap;
 
-    return reverseLinkedList(head);
+    return dummy->next;
+    
 }
 
 
@@ -41,7 +37,7 @@ int main(int argc, char const *argv[])
     head->next->next = createNewListNode(2);
     head->next->next->next = createNewListNode(4);
     head->next->next->next->next = createNewListNode(5);
-    ListNode* swappedNodes = swapNodes(head,1);
+    ListNode* swappedNodes = swapNodes(head,2);
     while (swappedNodes)
     {
         cout << swappedNodes->data << endl;
