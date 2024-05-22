@@ -10,7 +10,7 @@ ListNode *mergeInBetweenNodes(ListNode *list1, ListNode *list2, int a, int b)
         if (count == a - 1)
         {
             // getting nodeA to start connecting with list2
-            nodeA = ptr;
+            NodeA = ptr;
         }
         else if (count == b)
         {
