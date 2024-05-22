@@ -31,6 +31,19 @@ void insertNodeAtTail(ListNode *head, int data)
     current->next = newNode;
 }
 
+ListNode* getMiddleNode(ListNode* head){
+    ListNode* slowptr = head;
+    ListNode* fastptr = head;
+    while (fastptr  && fastptr->next)
+    {   
+        slowptr = slowptr->next;
+        fastptr = fastptr->next->next;
+    }
+
+    return slowptr;
+    
+}
+
 ListNode *reverseLinkedList(ListNode *head)
 {
     ListNode *prev = nullptr;
