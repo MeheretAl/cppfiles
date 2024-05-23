@@ -3,32 +3,33 @@
 
 using namespace std;
 
+
+bool hasDistinctDigits(int year) {
+    unordered_set<int> digits;
+    while (year > 0) {
+        int digit = year % 10;
+        if (digits.find(digit) != digits.end()) {
+            return false;
+        }
+        digits.insert(digit);
+        year /= 10;
+    }
+    return true;
+}
+
 int main(int argc, char const *argv[])
 {
-    unordered_set<int> unique;
     int num;
     cin >> num;
     int comp = num;
-    while (num)
+    while (true)
     {
-        int digit = num%10;
-        unique.insert(digit);
-        num = num/10;
-    }
-
-    while (comp)
-    {   
-        int digit = num%10;
-        if (unique.find(digit) != unique.end())
-        {
-            /* code */
+        comp += 1;
+        if (hasDistinctDigits(comp)) {
+            cout << comp << endl;
+            break;
         }
-        
-        int currYear = comp+1;
-
     }
-    
-
-       
+  
     return 0;
 }
