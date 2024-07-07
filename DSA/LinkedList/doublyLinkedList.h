@@ -1,22 +1,26 @@
+template <typename T>
+
 struct doublyLinkedList
 {
     doublyLinkedList *prev;
     doublyLinkedList *next;
-    int data;
+    T data;
 };
 
-doublyLinkedList *createDoublyLink(int data)
+template <typename T>
+doublyLinkedList<T> *createDoublyLink(T data)
 {
-    doublyLinkedList *node = new doublyLinkedList();
+    doublyLinkedList<T> *node = new doublyLinkedList<T>();
     node->prev = nullptr;
     node->next = nullptr;
     node->data = data;
     return node;
 }
 
-doublyLinkedList *insertNode(doublyLinkedList *node, int data)
+template <typename T>
+doublyLinkedList<T> *insertNode(doublyLinkedList<T> *node, int data)
 {
-    doublyLinkedList *newNode = new doublyLinkedList();
+    doublyLinkedList<T> *newNode = new doublyLinkedList<T>();
     newNode->data = data;
     newNode->prev = node;
     newNode->next = nullptr;
@@ -28,9 +32,10 @@ doublyLinkedList *insertNode(doublyLinkedList *node, int data)
     return newNode;
 }
 
-doublyLinkedList *insertNodeBefore(doublyLinkedList *node, int data)
+template <typename T>
+doublyLinkedList<T> *insertNodeBefore(doublyLinkedList<T> *node, int data)
 {
-    doublyLinkedList *newNode = new doublyLinkedList();
+    doublyLinkedList<T> *newNode = new doublyLinkedList<T>();
     newNode->data = data;
     newNode->prev = node->prev;
     newNode->next = node->next;
@@ -44,9 +49,10 @@ doublyLinkedList *insertNodeBefore(doublyLinkedList *node, int data)
     return newNode;
 }
 
-bool nodeExists(doublyLinkedList *node, int target)
+template <typename T>
+bool nodeExists(doublyLinkedList<T> *node, int target)
 {
-    doublyLinkedList *ptr = node;
+    doublyLinkedList<T> *ptr = node;
     while (ptr != nullptr)
     {
         if (ptr->data == target)
@@ -58,9 +64,10 @@ bool nodeExists(doublyLinkedList *node, int target)
     return false;
 }
 
-void deleteNodeByData(doublyLinkedList *node, int target)
+template <typename T>
+void deleteNodeByData(doublyLinkedList<T> *node, int target)
 {
-    doublyLinkedList *ptr = node;
+    doublyLinkedList<T> *ptr = node;
     while (ptr != nullptr)
     {
         if (ptr->data == target)
@@ -86,6 +93,4 @@ void deleteNodeByData(doublyLinkedList *node, int target)
         }
         ptr = ptr->next;
     }
-
-    cout << "Node with data " << target << " not found";
 }
