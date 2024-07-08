@@ -1,20 +1,22 @@
+template <typename T>
 struct ListNode
 {
-    int data;
+    T data;
     ListNode *next;
 };
 
-ListNode *createNewListNode(int data)
+template <typename T>
+ListNode<T> *createNewListNode(T data)
 {
-    ListNode *node = new ListNode();
+    ListNode<T> *node = new ListNode<T>();
     node->data = data;
     node->next = nullptr;
     return node;
 }
-
-void insertNodeAtTail(ListNode *head, int data)
+template <typename T>
+void insertNodeAtTail(ListNode<T> *head, T data)
 {
-    ListNode *newNode = createNewListNode(data);
+    ListNode<T> *newNode = createNewListNode(data);
 
     if (head == nullptr)
     {
@@ -22,7 +24,7 @@ void insertNodeAtTail(ListNode *head, int data)
         return;
     }
 
-    ListNode *current = head;
+    ListNode<T> *current = head;
     while (current->next != nullptr)
     {
         current = current->next;
@@ -31,24 +33,26 @@ void insertNodeAtTail(ListNode *head, int data)
     current->next = newNode;
 }
 
-ListNode* getMiddleNode(ListNode* head){
-    ListNode* slowptr = head;
-    ListNode* fastptr = head;
-    while (fastptr  && fastptr->next)
-    {   
+template <typename T>
+ListNode<T> *getMiddleNode(ListNode<T> *head)
+{
+    ListNode<T> *slowptr = head;
+    ListNode<T> *fastptr = head;
+    while (fastptr && fastptr->next)
+    {
         slowptr = slowptr->next;
         fastptr = fastptr->next->next;
     }
 
     return slowptr;
-    
 }
 
-ListNode *reverseLinkedList(ListNode *head)
+template <typename T>
+ListNode<T> *reverseLinkedList(ListNode<T> *head)
 {
-    ListNode *prev = nullptr;
-    ListNode *current = head;
-    ListNode *next;
+    ListNode<T> *prev = nullptr;
+    ListNode<T> *current = head;
+    ListNode<T> *next;
     while (current != nullptr)
     {
         next = current->next;
@@ -60,17 +64,19 @@ ListNode *reverseLinkedList(ListNode *head)
     return prev;
 }
 
-ListNode *insertNodeAtHead(ListNode *head, int data)
+template <typename T>
+ListNode<T> *insertNodeAtHead(ListNode<T> *head, T data)
 {
-    ListNode *newNode = createNewListNode(data);
+    ListNode<T> *newNode = createNewListNode<T>(data);
     newNode->next = head;
     head = newNode;
     return head;
 }
 
-bool searchByData(ListNode *head, int target)
+template <typename T>
+bool searchByData(ListNode<T> *head, T target)
 {
-    ListNode *ptr = head;
+    ListNode<T> *ptr = head;
     while (ptr != nullptr)
     {
         if (target == ptr->data)
@@ -83,20 +89,21 @@ bool searchByData(ListNode *head, int target)
     return false;
 }
 
-void deleteNodeByData(ListNode *head, int target)
+template <typename T>
+void deleteNodeByData(ListNode<T> *head, T target)
 {
     if (head == nullptr)
     {
         return;
     }
-    ListNode *dummy = createNewListNode(0);
+    ListNode<T> *dummy = createNewListNode<T>(T());
     dummy->next = head;
-    ListNode *ptr = dummy;
+    ListNode<T> *ptr = dummy;
     while (ptr->next != nullptr)
     {
         if (ptr->next->data == target)
         {
-            ListNode *temp = ptr->next->next;
+            ListNode<T> *temp = ptr->next->next;
             delete ptr->next;
             ptr->next = temp;
             break;
@@ -104,6 +111,7 @@ void deleteNodeByData(ListNode *head, int target)
         ptr = ptr->next;
     }
 }
+
 // int main()
 // {
 //
