@@ -1,61 +1,134 @@
-#include "doublyLinkedList.h"
-#include <iostream>
+#include <string>
 #include <algorithm>
 
 using namespace std;
 
-class TextEditor
+class Node
 {
-private:
-    doublyLinkedList<char> *head;
-
 public:
-    TextEditor()
+    char val;
+    Node *next;
+    Node *prev;
+
+    Node(char val)
     {
-        head = new doublyLinkedList<char>;
-        head->data = '@'; // holder value
-        head->prev = nullptr;
-        head->next = nullptr;
+        this->val = val;
+        next = prev = nullptr;
+    }
+};
+
+class LinkedList
+{
+public:
+    Node *head;
+    Node *cursor;
+    LinkedList()
+    {
+
+        this->head = new Node('@');
+        this->cursor = head;
     }
 
-    void addText(string text)
-    {
-        doublyLinkedList<char> *current = head;
-        while (current->next != nullptr)
-        {
-            current = current->next;
-        }
+    void insert(char val)
+    { // add new node after cursor and move cursor
+        Node *node = new Node(val);
+        Node *temp = cursor->next;
+        cursor->next = node;
+        node->next = temp;
+        node->prev = cursor;
+        if (temp != nullptr)
+            temp->prev = node;
 
-        for (char letter : text)
-        {
-            doublyLinkedList<char> *newNode = new doublyLinkedList<char>;
-            newNode->data = letter;
-            newNode->prev = current;
-            newNode->next = nullptr;
-
-            current->next = newNode;
-            current = newNode;
-        }
+        cursor = cursor->next;
     }
 
-    string printCurr()
+    void deleteNode()
     {
-        doublyLinkedList<char> *curr = head;
+        if (cursor->prev == nullptr)
+        {
+            return;
+        }
+        Node *temp = cursor;
+        temp->prev->next = temp->next;
+        if (temp->next != nullptr)
+            temp->next->prev = temp->prev;
+        cursor = cursor->prev;
+        delete (temp);
+    }
+
+    void moveLeft()
+    {
+        cursor = cursor->prev;
+    }
+    void moveRight()
+    {
+        cursor = cursor->next;
+    }
+    string leftChars()
+    {
+        Node *temp = cursor;
         string ans = "";
-        while (curr != nullptr)
+
+        int count = 10;
+        while (count > 0 && temp->val != '@')
         {
-            ans += string(1, curr->data);
-            curr = curr->next;
+            ans += temp->val;
+            temp = temp->prev;
+            count--;
         }
+        reverse(ans.begin(), ans.end());
 
         return ans;
     }
 };
 
-int main(int argc, char const *argv[])
+class TextEditor
 {
-    TextEditor *obj = new TextEditor();
-    cout << obj->printCurr() << endl;
-    obj->addText("leetcode");
-    cout << obj->printCurr() << endl;
-}
+public:
+    LinkedList *list;
+    TextEditor()
+    {
+        list = new LinkedList();
+    }
+
+    // insert text in linkedlist
+    void addText(string text)
+    {
+        for (int i = 0; i < text.size(); i++)
+        {
+            list->insert(text[i]);
+        }
+    }
+
+    int deleteText(int k)
+    {
+        int ans = 0;
+        while (k > 0 && list->cursor->val != '@')
+        {
+            list->deleteNode();
+            ans++;
+            k--;
+        }
+        return ans;
+    }
+
+    string cursorLeft(int k)
+    {
+        while (k > 0 && list->cursor->val != '@')
+        {
+            list->moveLeft();
+            k--;
+        }
+        return list->leftChars();
+    }
+
+    string cursorRight(int k)
+    {
+        while (k > 0 && list->cursor->next != nullptr)
+        {
+            list->moveRight();
+            k--;
+        }
+        return list->leftChars();
+    }
+};
